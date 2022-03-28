@@ -1,32 +1,38 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jdecorte42 <jdecorte42@student.42.fr>      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/27 17:11:47 by jdecorte          #+#    #+#              #
-#    Updated: 2022/03/24 09:13:21 by jdecorte42       ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC			= c++ -Wall -Wextra -Werror -std=c++98
+RM			= rm -rf
+NAME		= ./phonebook
+NAME_SHORT	= phonebook
 
-NAME = Account
+INCS_DIR	= inc
+MAIN_INC	= -I$(INCS_DIR)
+INCS		= $(shell find $(INCS_DIR) -type f -name "*.hpp")
 
-CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
+SRCS_DIR 	= src
+SRCS		= $(shell find $(SRCS_DIR) -type f -name "*.cpp")
 
-RM = rm -rf
+OBJS		= $(SRCS:.cpp=.o)
 
-SRCS = 	megaphone.cpp
+_COLOR		= \033[32m
+_BOLDCOLOR	= \033[32;1m
+_RESET		= \033[0m
+_CLEAR		= \033[0K\r\c
+_OK			= [\033[32mOK\033[0m]
 
-$(NAME) :
-	clang++ $(CFLAGS) $(SRCS) -o $(NAME)
+%.o			: %.cpp
+			@echo "[..] $(NAME_SHORT)... compiling $*.cpp\r\c"
+			@$(CC) $(MAIN_INC) -c $< -o $@
+			@echo "$(_CLEAR)"
 
-all : $(NAME)
+all			: $(NAME)
 
-fclean : clean
-	$(RM) $(NAME)
+$(NAME)		: $(OBJS) $(INCS)
+			@$(CC) $(OBJS) $(MAIN_INC) -o $(NAME)
+			@echo "$(_OK) $(NAME_SHORT) compiled"
 
-clean :
-	$(RM) $(NAME)
+clean		:
+			@$(RM) $(OBJS)
 
-re : fclean all
+fclean		: clean
+			@$(RM) $(NAME)
+
+re			: fclean all
