@@ -1,8 +1,8 @@
-#include "PhoneBook.hpp"
+#include "../inc/PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
 {
-	_index = -1;
+    index = 0;
 	return ;
 }
 
@@ -11,16 +11,28 @@ PhoneBook::~PhoneBook(void)
 	return ;
 }
 
-// void askinfo(std::string str)
-// {
-//     std::string info;
-//     std::cout << str << std::endl;
-//     while(!getline(std::cin, info))
-//         std::cout << info << std::endl;
-// }
-// void PhoneBook::add_contact()
-// {
-//     askinfo("Enter first name");
-// }
+void PhoneBook::add_contact()
+{
+    if(index != 7)
+        contacts[index].add_info(index);
+    else
+        contacts[7].add_info(index);
+    index++;
+}
 
+void PhoneBook::search_contact(int index)
+{
+    if(index < 0 || index > 7)
+    {
+        std::cout << "Invalid Index" << std::endl;
+        return ;
+    }
+    contacts[index].show_contact();
+}
 
+void PhoneBook::show_all()
+{
+    std::cout << "     index|first name| last name|  nickname" << std::endl;
+    for(int i = 0; i < index; i++)
+        std::cout << limit10char(std::to_string(i)) << "|" << limit10char(contacts[i].getFirstname()) << "|" << limit10char(contacts[i].getLastname()) << "|" << limit10char(contacts[i].getNickname()) << std::endl; 
+}
