@@ -1,19 +1,24 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 void replace(std::ofstream &fd, std::string line, std::string str1, std::string str2)
 {
-    std::size_t pos = line.find(str1);
-    if(pos != (size_t)-1)
+    std::vector<int> tab;
+    std::size_t pos = 0;
+
+    while(true)
     {
+        pos = line.find(str1);
+        if(pos == (size_t)-1)
+            break;
         line.erase(pos, str1.length());
-        line.insert(pos, str2);
+        tab.push_back(pos);
     }
+    for(int i = tab.size() - 1; i != -1; i--)
+        line.insert(tab.at(i), str2);
     fd << line;
-    // ! to fix
-    if(line.eof() == 1)
-        fd << std::endl;
 }
 
 int main(int ac, char **argv)
@@ -31,5 +36,9 @@ int main(int ac, char **argv)
     std::string line;
     std::string toadd;
     for(int i = 0; getline(fd, line); i++)
+    {
         replace(fd2, line, str1, str2);
+        if(fd.eof() == 0)
+            fd2 << "\n";
+    }
 }
