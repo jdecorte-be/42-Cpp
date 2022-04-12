@@ -1,4 +1,4 @@
-NAME = phonebook
+NAME = zombie
 
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 

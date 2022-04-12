@@ -1,14 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
 void replace(std::ofstream &fd, std::string line, std::string str1, std::string str2)
 {
     std::size_t pos = line.find(str1);
-    line.erase(pos, str1.length());
-    line.insert(pos, str2);
-    std::cout << line << std::endl;
-    fd.write(line.c_str(), line.length());
-    fd << std::endl;
+    if(pos != (size_t)-1)
+    {
+        line.erase(pos, str1.length());
+        line.insert(pos, str2);
+    }
+    fd << line;
+    // ! to fix
+    if(line.eof() == 1)
+        fd << std::endl;
 }
 
 int main(int ac, char **argv)
