@@ -7,7 +7,7 @@ class Harl;
 typedef struct s_harl
 {
     std::string lvl;
-    void    (Harl::*func)(void);
+    void    (Harl::*func)();
 }   t_harl;
 
 class Harl
@@ -18,6 +18,7 @@ class Harl
         void info(void);
         void warning(void);
         void error(void);
+
     public:
         Harl();
         void complain(std::string level);

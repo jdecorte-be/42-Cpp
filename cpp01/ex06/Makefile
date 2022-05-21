@@ -1,4 +1,4 @@
-NAME = phonebook
+NAME = ex06
 
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 

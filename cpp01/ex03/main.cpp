@@ -1,19 +1,25 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
+#include "Weapon.hpp"
 
-int main()
+int main( void )
 {
-    Weapon club = Weapon("Weapon1");
-    HumanA bob("Bob", club);
-    bob.attack();
-    club.setType("Weapon2");
-    bob.attack();
+	Weapon	knife = Weapon("crude spiked knife");
 
-    Weapon club2 = Weapon("Weapon3");
-    HumanB jim("Jim");
-    jim.setWeapon(club2);
-    jim.attack();
-    club.setType("Weapon4");
-    jim.attack();
-    return 0;
+	HumanA	Pavel("Pavel", knife);
+	Pavel.attack();
+	knife.setType("some other type of knife");
+	Pavel.attack();
+
+
+    std::cout << "---- Razaq" << std::endl;
+
+	Weapon	club = Weapon("crude spiked club");
+	HumanB	Razaq("Razaq");
+	Razaq.setWeapon(club);
+	Razaq.attack();
+	club.setType("some other type of club");
+	Razaq.attack();
+
+	return 0;
 }

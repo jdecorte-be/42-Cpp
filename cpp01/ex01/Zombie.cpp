@@ -1,29 +1,51 @@
 #include "Zombie.hpp"
 
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
 Zombie::Zombie()
 {
-
+    std::cout << "Zombie Constructor Called" << std::endl;
 }
+
+Zombie::Zombie(std::string name)
+	: name(name)
+{
+    std::cout << "Zombie Constructor Called" << std::endl;
+}
+
+
+
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
 
 Zombie::~Zombie()
 {
     std::cout << this->name << ": Destructor Called" << std::endl;
 }
 
-void Zombie::annouce(void)
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
+
+void Zombie::announce()
 {
     std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
+
+
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
+
 
 void Zombie::setName(const std::string &name)
 {
     this->name = name;
 }
 
-Zombie *zombieHorde( int N, std::string name )
-{
-    Zombie *zombie = new Zombie[N];
-    for(int i = 0; i < N; i++)
-        zombie[i].setName(name);
-    return zombie;
-}
+
+
+/* ************************************************************************** */

@@ -1,6 +1,5 @@
 #include "Harl.hpp"
 
-// *
 Harl::Harl()
 {
     harl[0].lvl = "DEBUG";
@@ -13,7 +12,6 @@ Harl::Harl()
     harl[3].func = &Harl::error;
 }
 
-// *
 void Harl::debug()
 {
     std::cout << "[ DEBUG ]" << std::endl;

@@ -1,18 +1,14 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB()
-{
-
-}
-
 HumanB::HumanB(std::string name)
+    : name(name)
 {
-    this->name = name;
+    std::cout << "HumanB Constructor Called" << std::endl;
 }
 
 HumanB::~HumanB()
 {
-
+    std::cout << "HumanB Destructor Called" << std::endl;
 }
 
 void HumanB::setWeapon(Weapon &weapon)

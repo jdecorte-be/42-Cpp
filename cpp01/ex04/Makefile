@@ -1,4 +1,4 @@
-NAME = phonebook
+NAME = replace
 
 CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 
