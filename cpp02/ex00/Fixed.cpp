@@ -1,30 +1,54 @@
 #include "Fixed.hpp"
 
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
 Fixed::Fixed()
+	: value(0)
 {
-    std::cout << "Default constructor called" << std::endl;
-    value = 0;
+    std::cout << "Default Constructor Called" << std::endl;
 }
+
+Fixed::Fixed( const Fixed & src )
+{
+    std::cout << "Copy constructor called" << std::endl;
+    value = src.getRawBits();
+}
+
+
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
 
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &fixed)
-{
-    std::cout << "Copy constructor called" << std::endl;
-    value = fixed.getRawBits();
-}
 
-Fixed &Fixed::operator=(const Fixed &fixed)
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
+
+Fixed &				Fixed::operator=( Fixed const & rhs )
 {
     std::cout << "Copy assignment operator called" << std::endl;
-    if(this == &fixed)
-        return *this;
-    value = fixed.getRawBits();
-    return *this;
+	if ( this != &rhs )
+		value = rhs.getRawBits();
+	return *this;
 }
+
+
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
+
+
+
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
 
 int Fixed::getRawBits() const
 {
@@ -37,5 +61,4 @@ void Fixed::setRawBits(int const raw)
     value = raw;
 }
 
-
-
+/* ************************************************************************** */

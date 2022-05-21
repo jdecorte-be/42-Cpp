@@ -17,6 +17,7 @@ int main( void ) {
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
     return 0;
 }
+
 // Devrait afficher ce résultat :
 // $> ./a.out
 // Default constructor called
