@@ -1,4 +1,4 @@
-#include "../inc/PhoneBook.hpp"
+#include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
 {
@@ -13,11 +13,13 @@ PhoneBook::~PhoneBook(void)
 
 void PhoneBook::add_contact()
 {
-    if(index != 7)
-        contacts[index].add_info(index);
-    else
+    if(index == 8)
         contacts[7].add_info(index);
-    index++;
+    else
+    {
+        contacts[index].add_info(index);
+        index++;
+    }
 }
 
 void PhoneBook::search_contact(int index)

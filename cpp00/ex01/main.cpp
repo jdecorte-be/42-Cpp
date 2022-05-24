@@ -1,4 +1,4 @@
-#include "../inc/PhoneBook.hpp"
+#include "PhoneBook.hpp"
 
 bool isNumber(const std::string& str)
 {
@@ -27,7 +27,9 @@ int main()
 			phonebook.show_all();
 			std::cout << "Type the index of contact " << std::endl;
 			std::getline(std::cin, index);
-			if(isNumber(index))
+			if(index.empty())
+				std::cout << "Type a valid index " << std::endl;
+			else if(isNumber(index))
 				phonebook.search_contact(std::stoi(index));
 			else
 				std::cout << "Type a valid index " << std::endl;
