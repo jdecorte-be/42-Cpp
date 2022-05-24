@@ -18,6 +18,8 @@ int main()
 	while(19)
 	{
 		std::getline(std::cin, input);
+		if(std::cin.eof())
+			return 0;
 		if(input == "ADD")
 			phonebook.add_contact();
 		else if (input == "EXIT")
@@ -27,6 +29,8 @@ int main()
 			phonebook.show_all();
 			std::cout << "Type the index of contact " << std::endl;
 			std::getline(std::cin, index);
+			if(std::cin.eof())
+				return 0;
 			if(index.empty())
 				std::cout << "Type a valid index " << std::endl;
 			else if(isNumber(index))

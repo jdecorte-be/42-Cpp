@@ -94,6 +94,8 @@ std::string askinfo(std::string str)
     while(1)
     {
         getline(std::cin, info);
+        if(std::cin.eof())
+            exit(0);
         if(!info.empty())
             break;
         std::cout << "Please enter a argument" << std::endl;
