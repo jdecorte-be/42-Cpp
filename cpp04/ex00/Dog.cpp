@@ -1,27 +1,57 @@
 #include "Dog.hpp"
 
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
 Dog::Dog()
+	: type("Dog")
 {
-    type = "Dog";
+	std::cout << "Dog was constructed\n";
 }
+
+Dog::Dog( const Dog & src )
+{
+	type = src.type;
+}
+
+
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
 
 Dog::~Dog()
 {
-
+	std::cout << "Dog was destroyed\n";
 }
 
-Dog &Dog::operator=(const Dog &dog)
+
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
+
+Dog &				Dog::operator=( Dog const & rhs )
 {
-
-    
+	if ( this != &rhs )
+	{
+		this->type = rhs.type;
+	}
+	return *this;
 }
 
-Dog::Dog(const Dog &dog)
-{
 
-}
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
 
 void Dog::makeSound() const
 {
     std::cout << "The " << type << " barks" << std::endl;
 }
+
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
+
+
+/* ************************************************************************** */

@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 
 RM = rm -rf
 
-SRCS = 	src/*.cpp
+SRCS = 	*.cpp
 
 $(NAME) :
 	clang++ $(CFLAGS) $(SRCS) -o $(NAME)

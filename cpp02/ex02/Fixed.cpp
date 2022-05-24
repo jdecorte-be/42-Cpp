@@ -2,41 +2,55 @@
 
 const int Fixed::bit = 8;
 
-// * constuctor
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
 Fixed::Fixed()
+	: value(0)
 {
-    value = 0;
+    std::cout << "Default Constructor Called" << std::endl;
 }
 
 Fixed::Fixed(const int n)
+    : value(n << bit)
 {
-    value = n << bit;
+    std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float n)
+    : value(roundf((1 << 8) * n))
 {
-    value = roundf((1 << 8) * n);
+    std::cout << "Float constructor called" << std::endl;
 }
+
+Fixed::Fixed( const Fixed & src )
+{
+    std::cout << "Copy constructor called" << std::endl;
+    value = src.getRawBits();
+}
+
+
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
 
 Fixed::~Fixed()
 {
-    return;
-}
-
-Fixed::Fixed(const Fixed &fixed)
-{
-    *this = fixed;
+    std::cout << "Destructor called" << std::endl;
 }
 
 
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
 
-// * ope
-Fixed &Fixed::operator=(const Fixed &fixed)
+Fixed &				Fixed::operator=( Fixed const & rhs )
 {
-    if(this == &fixed)
-        return *this;
-    value = fixed.getRawBits();
-    return *this;
+    std::cout << "Copy assignment operator called" << std::endl;
+	if ( this != &rhs )
+		value = rhs.getRawBits();
+	return *this;
 }
 
 std::ostream &operator<<(std::ostream &o, const Fixed &fixed)
@@ -44,8 +58,6 @@ std::ostream &operator<<(std::ostream &o, const Fixed &fixed)
     o << fixed.toFloat();
     return o;
 }
-
-
 
 bool Fixed::operator<(const Fixed &fixed) const
 {
@@ -78,8 +90,6 @@ bool Fixed::operator!=(const Fixed &fixed) const
 }
 
 
-
-
 Fixed Fixed::operator+(const Fixed &fixed) const
 {
     Fixed ret(this->toFloat() + fixed.toFloat());
@@ -105,8 +115,6 @@ Fixed Fixed::operator/(const Fixed &fixed) const
 }
 
 
-
-
 Fixed &Fixed::operator++()
 {
     this->value++;
@@ -121,6 +129,7 @@ Fixed &Fixed::operator--()
 
 float Fixed::operator--(int n)
 {
+    (void)n;
     float res = this->toFloat();
     this->value--;
     return res;
@@ -128,12 +137,42 @@ float Fixed::operator--(int n)
 
 float Fixed::operator++(int n)
 {
+    (void)n;
     float res = this->toFloat();
     this->value++;
     return res;
 }
 
 
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
+
+float Fixed::toFloat() const
+{
+    int fixed = value;
+    return ((float)fixed / (1 << 8));
+}
+
+float Fixed::toInt() const
+{
+    return getRawBits() >> 8;
+}
+
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
+
+int Fixed::getRawBits() const
+{
+    std::cout << "getRawBits member function called" << std::endl;
+    return value;
+}
+
+void Fixed::setRawBits(int const raw)
+{
+    value = raw;
+}
 
 Fixed &Fixed::min(Fixed &a, Fixed &b)
 {
@@ -163,31 +202,5 @@ Fixed const &Fixed::max(Fixed const &a, Fixed const &b)
     return a;
 }
 
-
-
-
-
-
-// * Getters and setters
-int Fixed::getRawBits() const
-{
-    return value;
-}
-
-void Fixed::setRawBits(int const raw)
-{
-    value = raw;
-}
-
-// * Member functions
-float Fixed::toFloat() const
-{
-    int fixed = value;
-    return ((float)fixed / (1 << 8));
-}
-
-float Fixed::toInt() const
-{
-    return getRawBits() >> 8;
-}
+/* ************************************************************************** */
 

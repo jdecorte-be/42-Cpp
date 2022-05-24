@@ -23,44 +23,19 @@ public:
 
 	typedef Account		t;
 
-	static int	getNbAccounts( void )
-	{
-		return _nbAccounts;
-	}
-	static int	getTotalAmount( void )
-	{
-		return _totalAmount;
-	}
-	static int	getNbDeposits( void )
-	{
-		return _totalNbDeposits;
-	}
-	static int	getNbWithdrawals( void )
-	{
-		return _totalNbWithdrawals;
-	}
+	static int	getNbAccounts( void );
+	static int	getTotalAmount( void );
+	static int	getNbDeposits( void );
+	static int	getNbWithdrawals( void );
 	static void	displayAccountsInfos( void );
 
 	Account( int initial_deposit );
 	~Account( void );
 
-	void	makeDeposit( int deposit )
-	{
-		_totalAmount+=deposit;
-	}
-	bool	makeWithdrawal( int withdrawal )
-	{
-		_totalAmount-= withdrawal;
-		return withdrawal;
-	}
-	int		checkAmount( void ) const
-	{
-		return _totalAmount;
-	}
-	void	displayStatus( void ) const
-	{
-		return ;
-	}
+	void	makeDeposit( int deposit );
+	bool	makeWithdrawal( int withdrawal );
+	int		checkAmount( void ) const;
+	void	displayStatus( void ) const;
 
 
 private:
