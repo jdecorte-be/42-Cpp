@@ -65,8 +65,7 @@ std::ostream &operator<<(std::ostream &o, const Fixed &fixed)
 
 float Fixed::toFloat() const
 {
-    int fixed = value;
-    return ((float)fixed / (1 << 8));
+    return ((float)value / (float)(1 << 8));
 }
 
 float Fixed::toInt() const
@@ -80,7 +79,6 @@ float Fixed::toInt() const
 
 int Fixed::getRawBits() const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return value;
 }
 

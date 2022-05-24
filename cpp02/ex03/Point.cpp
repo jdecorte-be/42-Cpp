@@ -1,33 +1,57 @@
 #include "Point.hpp"
 
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
 Point::Point()
+	: x(0), y(0)
 {
-    x = 0; y = 0;
-}
-
-Point::~Point()
-{
-
 }
 
 Point::Point(const float x, const float y)
+	: x(x), y(y)
 {
-    this->x = x; this->y = y;
 }
 
-Point::Point(const Point &point)
+Point::Point( const Point & src )
+	: x(src.x), y(src.y)
 {
-    *this = point;
 }
 
-Point &Point::operator=(const Point &point)
+
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
+
+Point::~Point()
 {
-    if(this == &point)
-        return *this;
-    x = point.x;
-    y = point.y;
-    return *this;
 }
+
+
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
+
+Point &				Point::operator=( Point const & rhs )
+{
+	if ( this != &rhs )
+	{
+		(Fixed)x = (Fixed)rhs.x;
+		(Fixed)y = (Fixed)rhs.y;
+	}
+	return *this;
+}
+
+
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
+
+
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
 
 Fixed Point::getX() const
 {
@@ -38,3 +62,6 @@ Fixed Point::getY() const
 {
     return y;
 }
+
+
+/* ************************************************************************** */

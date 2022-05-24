@@ -1,23 +1,32 @@
 #ifndef POINT_HPP
-#define POINT_HPP
-#include "Fixed.hpp"
+# define POINT_HPP
+
+# include <iostream>
+# include <string>
+
+# include "Fixed.hpp"
 
 class Point
 {
-    private:
-        Fixed x;
-        Fixed y;
-    public:
-        Point();
-        Point(const float x, const float y);
-        ~Point();
-        Point(const Point &point);
-        Point &operator=(const Point &point);
-        Fixed getX() const;
-        Fixed getY() const;
+
+	public:
+
+		Point();
+		Point(const float x, const float y);
+		Point( Point const & src );
+		~Point();
+
+		Point &		operator=( Point const & rhs );
+
+		Fixed getX() const;
+		Fixed getY() const;
+
+	private:
+        const Fixed x;
+        const Fixed y;
 
 };
 
 bool bsp( Point const a, Point const b, Point const c, Point const point);
 
-#endif
+#endif /* *********************************************************** POINT_H */
