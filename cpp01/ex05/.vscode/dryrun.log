@@ -1,5 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/jdecorte42/Desktop/42-Cpp/cpp01/ex05'
-clang++ -Wall -Wextra -Werror -I. -std=c++98 *.cpp -o ex05
-make: Leaving directory `/Users/jdecorte42/Desktop/42-Cpp/cpp01/ex05'
- 

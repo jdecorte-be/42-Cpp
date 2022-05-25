@@ -1,5 +1,9 @@
 #include "Harl.hpp"
 
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
 Harl::Harl()
 {
     harl[0].lvl = "DEBUG";
@@ -10,6 +14,10 @@ Harl::Harl()
     harl[2].func = &Harl::warning;
     harl[3].lvl = "ERROR";
     harl[3].func = &Harl::error;
+}
+
+Harl::~Harl()
+{
 }
 
 void Harl::debug()

@@ -12,6 +12,10 @@ Harl::Harl()
     harl[3].func = &Harl::error;
 }
 
+Harl::~Harl()
+{
+}
+
 void Harl::debug()
 {
     std::cout << "[ DEBUG ]" << std::endl;
