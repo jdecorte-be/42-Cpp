@@ -13,63 +13,63 @@ Contact::~Contact(void)
 // * All Setters =================================================
 void Contact::setIndex(const int &index)
 {
-    this->index = index;
+    index = index;
 }
 
 void Contact::setFirstname(const std::string &firstname)
 {
-    this->firstname = firstname;
+    firstname = firstname;
 }
 
 void Contact::setLastname(const std::string &lastname)
 {
-    this->lastname = lastname;
+    lastname = lastname;
 }
 
 void Contact::setPhonenumber(const std::string &phonenumber)
 {
-    this->phonenumber = phonenumber;
+    phonenumber = phonenumber;
 }
 
 void Contact::setNickname(const std::string &nickname)
 {
-    this->nickname = nickname;
+    nickname = nickname;
 }
 
 void Contact::setSecret(const std::string &secret)
 {
-    this->secret = secret;
+    secret = secret;
 }
 
 // * All Getters ============================
 const int &Contact::getIndex()
 {
-    return this->index;
+    return index;
 }
 
 const std::string &Contact::getFirstname()
 {
-    return this->firstname;
+    return firstname;
 }
 
 const std::string &Contact::getPhonenumber()
 {
-    return this->phonenumber;
+    return phonenumber;
 }
 
 const std::string &Contact::getLastname()
 {
-    return this->lastname;
+    return lastname;
 }
 
 const std::string &Contact::getNickname()
 {
-    return this->nickname;
+    return nickname;
 }
 
 const std::string &Contact::getSecret()
 {
-    return this->secret;
+    return secret;
 }
 
 // * Function
@@ -107,7 +107,7 @@ std::string askinfo(std::string str)
 
 void Contact::add_info(int index)
 {
-    this->index = index;
+    index = index;
     firstname = askinfo("Enter first name");
     phonenumber = askinfo("Enter last name");
     lastname = askinfo("Enter nickname");
