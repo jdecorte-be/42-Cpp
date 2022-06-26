@@ -41,14 +41,39 @@ void Harl::error()
 
 void Harl::complain(std::string level)
 {
+    std::string	msg[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int index = -1;
     for(int i = 0; i < 4; i++)
     {
-        if(harl[i].lvl == level)
+        if(msg[i] == level)
         {
-            for(int j = i; j < 4; j++)
-                (this->*harl[j].func)();
-            return ;   
+            index = i;
+            break;
         }
     }
-    std::cout << "[ Probably complaining about insignificant problems ]" << std::endl << std::endl;
+    switch (index)
+	{
+		case (0):
+			for (int i = index; i < 4; i++)
+				(this->*harl[i].func)();
+			break ;
+		case (1):
+			for (int i = index; i < 4; i++)
+				(this->*harl[i].func)();
+			break ;
+
+		case (2):
+			for (int i = index; i < 4; i++)
+				(this->*harl[i].func)();
+			break ;
+
+		case (3):
+			for (int i = index; i < 4; i++)
+				(this->*harl[i].func)();
+			break ;
+
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break ;
+	}
 }
