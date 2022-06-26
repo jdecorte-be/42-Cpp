@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 
+const int Fixed::bit = 8;
+
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */

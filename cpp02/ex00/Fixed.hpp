@@ -20,7 +20,7 @@ class Fixed
 
 	private:
         float value;
-        static const int bt;
+        static const int bit;
 
 };
 
