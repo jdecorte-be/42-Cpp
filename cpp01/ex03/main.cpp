@@ -16,6 +16,7 @@ int main( void )
 
 	Weapon	club = Weapon("crude spiked club");
 	HumanB	Razaq("Razaq");
+	Razaq.attack();
 	Razaq.setWeapon(club);
 	Razaq.attack();
 	club.setType("some other type of club");
