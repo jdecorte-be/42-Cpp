@@ -6,14 +6,15 @@ std::string replace(std::string line, std::string str1, std::string str2)
 {
     std::size_t pos = 0;
 
+    pos = line.find(str1, pos);
     while(true)
     {
-        pos = line.find(str1, pos + 1);
+        std::cout << (size_t)pos << std::endl;
         if(pos == (size_t)-1)
             break;
         line.erase(pos, str1.length());
         line.insert(pos, str2);
-        
+        pos = line.find(str1, pos + 1);
     }
     return line;
 }
@@ -33,7 +34,7 @@ int main(int ac, char **argv)
     std::ifstream infile(filename);
     if(!infile)
     {
-        std::cerr << "File dont exist: " << filename << std::endl;
+        std::cerr << "File dont exist or you dont have permission: " << filename << std::endl;
         return 1;
     }
     std::ofstream outfile(filename + ".replace");
