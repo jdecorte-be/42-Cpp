@@ -19,7 +19,7 @@ Fixed::Fixed(const int n)
 }
 
 Fixed::Fixed(const float n)
-    : value(roundf((1 << 8) * n))
+    : value(roundf((1 << bit) * n))
 {
     // std::cout << "Float constructor called" << std::endl;
 }
@@ -151,12 +151,12 @@ float Fixed::operator++(int n)
 float Fixed::toFloat() const
 {
     int fixed = value;
-    return ((float)fixed / (1 << 8));
+    return ((float)fixed / (1 << bit));
 }
 
 float Fixed::toInt() const
 {
-    return getRawBits() >> 8;
+    return getRawBits() >> bit;
 }
 
 /*
