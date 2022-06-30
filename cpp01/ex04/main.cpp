@@ -4,18 +4,16 @@
 
 std::string replace(std::string line, std::string str1, std::string str2)
 {
-    std::size_t pos = 0;
+    size_t		toReplaceLen = str1.length();
 
-    pos = line.find(str1, pos);
-    while(true)
-    {
-        std::cout << (size_t)pos << std::endl;
-        if(pos == (size_t)-1)
-            break;
-        line.erase(pos, str1.length());
-        line.insert(pos, str2);
-        pos = line.find(str1, pos + 1);
-    }
+	for (size_t pos = 0; pos < line.length(); pos++)
+	{
+		if (line.compare(pos, toReplaceLen, str1) == 0)
+		{
+			line.erase(pos, toReplaceLen);
+			line.insert(pos, str2);
+		}
+	}
     return line;
 }
 

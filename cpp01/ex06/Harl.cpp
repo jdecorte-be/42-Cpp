@@ -54,26 +54,20 @@ void Harl::complain(std::string level)
     switch (index)
 	{
 		case (0):
-			for (int i = index; i < 4; i++)
-				(this->*harl[i].func)();
-			break ;
+            (this->*harl[0].func)();
+
 		case (1):
-			for (int i = index; i < 4; i++)
-				(this->*harl[i].func)();
-			break ;
+            (this->*harl[1].func)();
 
 		case (2):
-			for (int i = index; i < 4; i++)
-				(this->*harl[i].func)();
-			break ;
+            (this->*harl[2].func)();
 
 		case (3):
-			for (int i = index; i < 4; i++)
-				(this->*harl[i].func)();
-			break ;
+            (this->*harl[3].func)();
+            break;
 
 		default:
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-			break ;
+            break;
 	}
 }
