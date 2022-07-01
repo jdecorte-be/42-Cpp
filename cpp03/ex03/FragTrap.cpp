@@ -1,51 +1,72 @@
 #include "FragTrap.hpp"
 
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
 FragTrap::FragTrap()
-    : ClapTrap("Default", 100, 100, 30)
 {
-    std::cout << "ClapFragTrapTrap default constructor called" << std::endl;
+	this->name = "";
+    this->health = 100;
+	this->energy = 100;
+	this->damage = 30;
+    std::cout << "FragTrap Default constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name)
-    : ClapTrap(name, 100, 100, 30)
 {
+	this->name = name;
+    this->health = 100;
+	this->energy = 100;
+	this->damage = 30;
     std::cout << "FragTrap constructor called" << std::endl;
 }
 
+FragTrap::FragTrap( const FragTrap & src )
+{
+	std::cout << "FragTrap : Copy constructor called" << std::endl;
+    *this = src;
+}
+
+
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
+
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap destructor called" << std::endl;
+	std::cout << name <<" : FragTrap : Destructor called" << std::endl;
 }
 
-FragTrap &FragTrap::operator=(const FragTrap &frag)
+
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
+
+FragTrap &				FragTrap::operator=( FragTrap const & rhs )
 {
-    if(this == &frag)
-        return *this;
-    this->setName(frag.getName());
-    this->setHealth(frag.getHealth());
-    this->setEnergy(frag.getEnergy());
-    this->setDamage(frag.getDamage());
-    return *this;
+    std::cout << "FragTrap : Assign constructor called" << std::endl;
+	if ( this != &rhs )
+	{
+		name = rhs.name;
+		health = rhs.health;
+		energy = rhs.energy;
+		damage = rhs.damage;
+	}
+	return *this;
 }
 
-FragTrap::FragTrap(const FragTrap &frag)
-{
-    std::cout << "Copy constructor called" << std::endl;
-    *this = frag;
-}
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
 
 void FragTrap::highFivesGuys(void)
 {
-    std::cout << "HighFivesGuys called" << std::endl;
+	std::cout << "Hey guys! Give me a high five!!!" << std::endl;
 }
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
 
-void FragTrap::attack(const std::string& target)
-{
-    if(this->getHealth() <= 0 && this->getEnergy() <= 0)
-    {
-        std::cout << "Not enough energy or ClapTrap is dead" << std::endl;
-        return;
-    }
-    std::cout << "FragTrap " << getName() << " attacks " << target << ", causing " << getDamage() << " points of damage!" << std::endl;
-    setEnergy(getEnergy() - 1);
-}
+
+/* ************************************************************************** */
