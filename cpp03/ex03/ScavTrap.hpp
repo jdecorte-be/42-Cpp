@@ -21,7 +21,7 @@ class ScavTrap
 		void attack(const std::string& target);
 
 		void guardGate(void);
-
+		void setEnergy();
 	private:
 };
 

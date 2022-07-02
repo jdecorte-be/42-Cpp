@@ -9,7 +9,7 @@ DiamondTrap::DiamondTrap(std::string name)
 	this->name = name;
 	ClapTrap::name = name + "_clap_name";
 	this->health = FragTrap::health;
-	this->energy = ScavTrap::energy;
+	ScavTrap::setEnergy();
 	this->damage = FragTrap::damage;
     std::cout << "DiamondTrap constructor called" << std::endl;
 }
