@@ -19,8 +19,6 @@ class WrongCat
 
 		void makeSound() const;
 
-	private:
-		std::string type;
 
 };
 

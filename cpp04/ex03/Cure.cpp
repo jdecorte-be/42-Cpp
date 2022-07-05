@@ -1,18 +1,17 @@
-#include "Animal.hpp"
+#include "Cure.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Animal::Animal()
-	: type("Animal")
+Cure::Cure()
+	: AMateria("cure")
 {
-	std::cout << "Default constructor for Animal called\n";
 }
 
-Animal::Animal( const Animal & src )
+Cure::Cure( const Cure & src )
+	: AMateria(src)
 {
-	std::cout << "Copy constructor for Animal called" << std::endl;
 	*this = src;
 }
 
@@ -21,9 +20,8 @@ Animal::Animal( const Animal & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Animal::~Animal()
+Cure::~Cure()
 {
-	std::cout << "Destructor for Animal called\n";
 }
 
 
@@ -31,12 +29,11 @@ Animal::~Animal()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Animal &				Animal::operator=( Animal const & rhs )
+Cure &				Cure::operator=( Cure const & rhs )
 {
-	std::cout << "Assignement operator for Animal called" << std::endl;
 	if ( this != &rhs )
 	{
-		this->type = rhs.getType();
+		type = rhs.type;
 	}
 	return *this;
 }
@@ -46,14 +43,19 @@ Animal &				Animal::operator=( Animal const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+AMateria* Cure::clone() const
+{
+	return new Cure(*this);
+}
+
+void Cure::use(ICharacter& target)
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-const std::string &Animal::getType() const
-{
-    return this->type;
-}
 
 /* ************************************************************************** */

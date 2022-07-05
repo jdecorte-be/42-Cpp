@@ -13,14 +13,12 @@ class Dog
 
 		Dog();
 		Dog( Dog const & src );
-		virtual ~Dog();
+		~Dog();
 
 		Dog &		operator=( Dog const & rhs );
 
         void makeSound() const;
 
-	private:
-		std::string type;
 };
 
 #endif /* ************************************************************* DOG_H */

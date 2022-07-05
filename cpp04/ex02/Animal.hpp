@@ -3,29 +3,28 @@
 
 # include <iostream>
 # include <string>
+
 # include "Brain.hpp"
 
 class Animal
-    : public Brain
 {
-    private:
-		Animal();
 
 	public:
 
-        Animal(const std::string type);
+		Animal();
 		Animal( Animal const & src );
-		virtual ~Animal();
+		virtual ~Animal() = 0;
 
-		Animal &		operator=( Animal const & rhs );
+		virtual Animal &		operator=( Animal const & rhs );
 
-        virtual void makeSound() const;
-        std::string getType() const;
-        virtual Brain *getBrain() const = 0;
+        virtual void makeSound() const = 0;
+        const std::string &getType() const;
+
+		virtual Brain		*getBrain( void ) const = 0;
+		virtual void		getIdea(int index ) = 0;
 
 	protected:
         std::string type;
-        
 
 };
 

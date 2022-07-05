@@ -5,15 +5,16 @@
 */
 
 Cat::Cat()
-	: type("Cat")
 {
-    brain = new Brain;
-	std::cout << "Cat was constructed\n";
+	this->type = "Cat";
+	this->brain = new Brain();
+	std::cout << "Default constructor for Cat called\n";
 }
 
 Cat::Cat( const Cat & src )
 {
-	type = src.type;
+	std::cout << "Copy constructor for Cat called" << std::endl;
+	brain = new Brain(*(src.getBrain()));
 }
 
 
@@ -23,8 +24,8 @@ Cat::Cat( const Cat & src )
 
 Cat::~Cat()
 {
-    delete brain;
-	std::cout << "Cat was destroyed\n";
+	delete brain;
+	std::cout << "Destructor for Cat called\n";
 }
 
 
@@ -34,13 +35,25 @@ Cat::~Cat()
 
 Cat &				Cat::operator=( Cat const & rhs )
 {
+	std::cout << "Assignement operator for Cat called" << std::endl;
 	if ( this != &rhs )
 	{
 		this->type = rhs.type;
+		this->brain = new Brain(*rhs.getBrain());
 	}
 	return *this;
 }
 
+Animal	&Cat::operator=( Animal const &rhs )
+{
+	std::cout << "Animal Assignement operator for Cat called" << std::endl;
+	if ( this != &rhs )
+	{
+		this->type = rhs.getType();
+		this->brain = new Brain(*rhs.getBrain());
+	}
+	return *this;
+}
 
 /*
 ** --------------------------------- METHODS ----------------------------------
@@ -56,10 +69,14 @@ void Cat::makeSound() const
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-
-Brain	*Cat::getBrain() const
+Brain	*Cat::getBrain(void) const
 {
-	return brain;
+	return (this->brain);
+}
+
+void Cat::getIdea(int index)
+{
+	std::cout << this->brain->ideas[index] << std::endl;
 }
 
 /* ************************************************************************** */

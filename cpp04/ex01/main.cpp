@@ -2,10 +2,39 @@
 #include "Cat.hpp"
 #include "Brain.hpp"
 #define NUMBER_OF_ANIMALS 8
-int	main( void )
+int main( void )
 {
+
+	std::cout << "=============================\n";
+
+	const Animal* heapDog = new Dog();
+	const Animal* heapCat = new Cat();
+	delete heapDog;
+	delete heapCat;
+
+
+	std::cout << "=============================\n";
+
+
+	Dog dog;
+	Cat cat;
+	Cat catCopy(cat);
+	Dog dogCopy(dog);
+	catCopy.getBrain()->ideas[5] = "test";
+	cat.getIdea(5);
+	catCopy.getIdea(5);
+	dog.getIdea(5);
+	dogCopy.getIdea(5);
+
+
+
+
+
+	std::cout << "=============================\n";
+
 	Animal	*animals[NUMBER_OF_ANIMALS];
 	Brain	*brain;
+
 	for (int i = 0; i < NUMBER_OF_ANIMALS; i++)
 	{
 		if (i < NUMBER_OF_ANIMALS / 2)
@@ -14,14 +43,17 @@ int	main( void )
 			animals[i] = new Cat();
 		std::cout << animals[i]->getType() << std::endl;
 	}
+
 	brain = animals[7]->getBrain();
 	brain->ideas[0] = "I'm hungry";
 	brain->ideas[1] = "That's a strange idea I'm having";
 	brain->ideas[2] = "Ball!!!!!";
 	brain->ideas[3] = "Squirrel!!!!!";
 	std::cout << animals[7]->getBrain()->ideas[0] << std::endl;
+
 	*(animals[5]) = *(animals[7]);
 	std::cout << animals[5]->getBrain()->ideas[2] << std::endl;
+
 	for (int i = 0; i < NUMBER_OF_ANIMALS; i++)
 		delete animals[i];
 }

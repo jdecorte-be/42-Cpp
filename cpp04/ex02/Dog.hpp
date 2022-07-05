@@ -17,13 +17,15 @@ class Dog
 		virtual ~Dog();
 
 		Dog &		operator=( Dog const & rhs );
+		Animal	&operator=( Animal const &rhs );
 
+
+		Brain *getBrain() const;
+		void getIdea(int index);
         void makeSound() const;
-        virtual Brain   *getBrain() const;
 
-	private:
-		std::string type;
-        Brain *brain;
+	private :
+		Brain *brain;
 };
 
 #endif /* ************************************************************* DOG_H */

@@ -5,14 +5,15 @@
 */
 
 Cat::Cat()
-	: type("Cat")
 {
-	std::cout << "Cat was constructed\n";
+	this->type = "Cat";
+	std::cout << "Default constructor for Cat called\n";
 }
 
 Cat::Cat( const Cat & src )
 {
-	type = src.type;
+	std::cout << "Copy constructor for Cat called" << std::endl;
+	*this = src;
 }
 
 
@@ -22,7 +23,7 @@ Cat::Cat( const Cat & src )
 
 Cat::~Cat()
 {
-	std::cout << "Cat was destroyed\n";
+	std::cout << "Destructor for Cat called\n";
 }
 
 
@@ -32,6 +33,7 @@ Cat::~Cat()
 
 Cat &				Cat::operator=( Cat const & rhs )
 {
+	std::cout << "Assignement operator for Cat called" << std::endl;
 	if ( this != &rhs )
 	{
 		this->type = rhs.type;

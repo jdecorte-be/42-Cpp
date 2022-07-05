@@ -1,18 +1,17 @@
-#include "Animal.hpp"
+#include "Ice.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Animal::Animal()
-	: type("Animal")
+Ice::Ice()
+	: AMateria("ice")
 {
-	std::cout << "Default constructor for Animal called\n";
 }
 
-Animal::Animal( const Animal & src )
+Ice::Ice( const Ice & src )
+	: AMateria(src)
 {
-	std::cout << "Copy constructor for Animal called" << std::endl;
 	*this = src;
 }
 
@@ -21,9 +20,8 @@ Animal::Animal( const Animal & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Animal::~Animal()
+Ice::~Ice()
 {
-	std::cout << "Destructor for Animal called\n";
 }
 
 
@@ -31,29 +29,39 @@ Animal::~Animal()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Animal &				Animal::operator=( Animal const & rhs )
+Ice &				Ice::operator=( Ice const & rhs )
 {
-	std::cout << "Assignement operator for Animal called" << std::endl;
 	if ( this != &rhs )
 	{
-		this->type = rhs.getType();
+		type = rhs.type;
 	}
 	return *this;
 }
 
-
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+
+AMateria* Ice::clone() const
+{
+	Ice *ret_mat = new Ice();
+	return ret_mat;
+}
+
+void Ice::use(ICharacter& target)
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
 
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-const std::string &Animal::getType() const
+void Ice::setType( std::string const &type )
 {
-    return this->type;
+	this->type = type;
 }
+
 
 /* ************************************************************************** */

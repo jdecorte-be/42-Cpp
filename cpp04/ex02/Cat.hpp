@@ -17,17 +17,18 @@ class Cat
 		virtual ~Cat();
 
 		Cat &		operator=( Cat const & rhs );
+		Animal	&operator=( Animal const &rhs );
 
         void makeSound() const;
-        virtual Brain   *getBrain() const;
 
-	private:
-		std::string type;
-        Brain *brain;
+		Brain *getBrain() const;
+		void getIdea(int index);
+
+
+	private :
+		Brain *brain;
 
 };
-
-
 
 
 #endif /* ************************************************************* CAT_H */

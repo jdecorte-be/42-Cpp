@@ -6,12 +6,13 @@
 
 WrongCat::WrongCat()
 {
-	std::cout << "WrongCat was constructed\n";
+	std::cout << "Default constructor for WrongCat called\n";
 }
 
 WrongCat::WrongCat( const WrongCat & src )
 {
-	type = src.type;
+	std::cout << "Copy constructor for WrongCat called" << std::endl;
+	*this = src;
 }
 
 
@@ -21,7 +22,7 @@ WrongCat::WrongCat( const WrongCat & src )
 
 WrongCat::~WrongCat()
 {
-	std::cout << "WrongCat was destroyed\n";
+	std::cout << "Destructor for WrongCat called\n";
 }
 
 
@@ -31,6 +32,7 @@ WrongCat::~WrongCat()
 
 WrongCat &				WrongCat::operator=( WrongCat const & rhs )
 {
+	std::cout << "Assignement operator for WrongCat called" << std::endl;
 	if ( this != &rhs )
 	{
 		type = rhs.type;

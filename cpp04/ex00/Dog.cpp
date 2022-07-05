@@ -5,14 +5,16 @@
 */
 
 Dog::Dog()
-	: type("Dog")
 {
-	std::cout << "Dog was constructed\n";
+	this->type = "Dog";
+	std::cout << "Default constructor for Dog called\n";
+	
 }
 
 Dog::Dog( const Dog & src )
 {
-	type = src.type;
+	std::cout << "Copy constructor for Dog called" << std::endl;
+	*this = src;
 }
 
 
@@ -22,7 +24,7 @@ Dog::Dog( const Dog & src )
 
 Dog::~Dog()
 {
-	std::cout << "Dog was destroyed\n";
+	std::cout << "Destructor for Dog called\n";
 }
 
 
@@ -32,6 +34,7 @@ Dog::~Dog()
 
 Dog &				Dog::operator=( Dog const & rhs )
 {
+	std::cout << "Assignement operator for Dog called" << std::endl;
 	if ( this != &rhs )
 	{
 		this->type = rhs.type;

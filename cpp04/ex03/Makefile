@@ -1,0 +1,20 @@
+NAME = ex03
+
+CFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -fsanitize=address -g
+
+RM = rm -rf
+
+SRCS =  *.cpp
+
+$(NAME) :
+		clang++ $(CFLAGS) $(SRCS) -o $(NAME)
+
+all : $(NAME)
+
+fclean : clean
+		$(RM) $(NAME)
+
+clean :
+		$(RM) $(NAME)
+
+re : fclean all
