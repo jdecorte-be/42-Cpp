@@ -1,6 +1,6 @@
 NAME = ex03
 
-CXXFLAGS = -Wall -Wextra -Werror -I. -std=c++98 -fsanitize=address -g
+CXXFLAGS = -Wall -Wextra -Werror -I. -std=c++98
 
 RM = rm -rf
 
