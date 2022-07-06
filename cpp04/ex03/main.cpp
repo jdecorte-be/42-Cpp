@@ -110,7 +110,6 @@ void ft_tests()
 	delete tmp1;
 	delete tmp2;
 	std::cout << std::endl;
-	//system("leaks ex03");
 }
 
 int main()

@@ -9,8 +9,6 @@ Character::Character(const std::string& name)
 {
 	for(int i = 0; i < 4; i++)
 		inv[i] = NULL;
-	for(int i = 0; i < 100; i++)
-		tofree[i] = NULL;
 }
 
 Character::Character( const Character & src )
@@ -35,11 +33,6 @@ Character::~Character()
 		if(inv[i])
 			delete inv[i];
 	}
-	for (int i = 0; tofree[i] && i < 100; i++)
-	{
-		if(tofree[i])
-			delete tofree[i];
-	}
 }
 
 
@@ -49,12 +42,16 @@ Character::~Character()
 
 Character &				Character::operator=( Character const & rhs )
 {
-	for(int i = 0; i < 4; i++)
+	if ( this != &rhs )
 	{
-		if (this->inv[i])
-			delete this->inv[i];
-		if (rhs.inv[i])
-			this->inv[i] = (rhs.inv[i])->clone();
+		for(int i = 0; i < 4; i++)
+		{
+			if (this->inv[i])
+				delete this->inv[i];
+			if (rhs.inv[i])
+				this->inv[i] = (rhs.inv[i])->clone();
+		}
+		name = rhs.name;
 	}
 	return *this;
 }
@@ -77,34 +74,26 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-	if(idx >= 0 && idx < 4 && inv[idx])
+	if(idx < 0 || idx >= 4)
+		std::cout << name << " : The index need to be  between 0 and 3" << std::endl;
+	else if (!(inv[idx]))	
+		std::cout << this->name << " : Material at slot " << idx << " don't exist " << std::endl;
+	else
 	{
-		add_free(inv[idx]);
+		AMateria *ptr = (this->inv)[idx];
+		std::cout << this->name << " unequipped " << ptr->getType() << " at slot "<< idx << std::endl;
 		inv[idx] = 0;
 	}
-	return;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	if(idx >= 0 && idx < 4 && inv[idx])
+	if(idx < 0 || idx >= 4 || !(inv[idx]))
 	{
-		inv[idx]->use(target);
-		unequip(idx);
+		std::cout << name << " : Enter a valid index or target not exist" << std::endl;
+		return ;
 	}
-}
-
-void Character::add_free(AMateria *m)
-{
-	int i = 0;
-
-	if(!m) return;
-	while(tofree[i] && i < 100)
-		i++;
-	if(tofree[i])
-		delete tofree[i];
-	tofree[i] = m;
-	std::cout << "---->" << m->getType() << std::endl;
+	inv[idx]->use(target);
 }
 
 /*

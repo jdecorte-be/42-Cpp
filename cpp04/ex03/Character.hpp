@@ -23,13 +23,11 @@ class Character
 		virtual void unequip(int idx);
 		virtual void use(int idx, ICharacter& target);
 		
-		void add_free(AMateria *m);
 		AMateria	*getMateriaFromInventory(int idx);
 
 	private:
 		AMateria *inv[4];
 		std::string name;
-		AMateria *tofree[100];
 };
 
 #endif /* ******************************************************* CHARACTER_H */
