@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
@@ -74,6 +75,19 @@ void Bureaucrat::decrease_grade(int n)
 		throw GradeTooLowException();
 	grade += n;
 	std::cout << "Decrease grade by " << n << std::endl;
+}
+
+void Bureaucrat::signForm(Form &ref)
+{
+	try
+	{
+		ref.beSigned(*this);
+		std::cout << "Bureaucrat " << name << " with a grade of " << grade << " have succesfully signs " << ref.getName() << std::endl;
+	}
+	catch (Form::Exception &e)
+	{
+		std::cout << "Bureaucrat " << name << " with a grade of " << grade << " can't signs " << ref.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 /*

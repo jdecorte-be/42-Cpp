@@ -13,7 +13,7 @@ class RobotomyRequestForm
 	public:
 
 		RobotomyRequestForm();
-		RobotomyRequestForm(std::string &traget);
+		RobotomyRequestForm(std::string traget);
 
 		RobotomyRequestForm( RobotomyRequestForm const & src );
 		~RobotomyRequestForm();
@@ -23,9 +23,8 @@ class RobotomyRequestForm
 		virtual void execute(Bureaucrat const & executor) const;
 
 	private:
+		std::string target;
 
 };
-
-std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i );
 
 #endif /* ********************************************* ROBOTOMYREQUESTFORM_H */

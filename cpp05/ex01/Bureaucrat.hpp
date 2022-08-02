@@ -4,6 +4,10 @@
 # include <iostream>
 # include <string>
 
+#include "Form.hpp"
+
+class Form;
+
 class Bureaucrat
 {
 
@@ -24,6 +28,9 @@ class Bureaucrat
 		void increase_grade(int n);
 		void decrease_grade(int n);
 		
+		// to add
+		void signForm(Form &ref);
+
 		// Error handling
 		class Exception
 			: public std::exception

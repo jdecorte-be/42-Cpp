@@ -13,7 +13,7 @@ class ShrubberyCreationForm
 	public:
 
 		ShrubberyCreationForm();
-		ShrubberyCreationForm(std::string &traget);
+		ShrubberyCreationForm(std::string traget);
 		ShrubberyCreationForm( ShrubberyCreationForm const & src );
 		~ShrubberyCreationForm();
 
@@ -22,9 +22,8 @@ class ShrubberyCreationForm
 		virtual void execute(Bureaucrat const & executor) const;
 
 	private:
+		std::string target;
 
 };
-
-std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i );
 
 #endif /* ******************************************* SHRUBBERYCREATIONFORM_H */

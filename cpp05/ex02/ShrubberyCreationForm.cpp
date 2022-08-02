@@ -5,17 +5,18 @@
 */
 
 ShrubberyCreationForm::ShrubberyCreationForm()
+	: Form("ShrubberyCreationForm" ,145, 137), target("Default")
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string &target)
-	: Form("ShrubberyCreationForm", target ,145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
+	: Form("ShrubberyCreationForm" ,145, 137), target(target)
 {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src )
+	: target(src.target)
 {
-	*this = src;
 }
 
 
@@ -34,10 +35,10 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationForm const & rhs )
 {
-	// if ( this != &rhs )
-	// {
-	// 	this->_value = rhs.getValue();
-	// }
+	if ( this != &rhs )
+	{
+		this->target = rhs.target;
+	}
 	return *this;
 }
 
@@ -48,26 +49,26 @@ ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationFo
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	std::fstream fd;
-	fd.open(target + "_shrubbery", std::fstream::out | std::fstream::trunc);
+	if(executor.getGrade() >  getGradeExec())
+		throw GradeTooLowException();
+	else if (getSigned() == false)
+		throw NotSignedException();// to add
+
+	std::ofstream fd(target + "_shrubbery");
+	if(!fd.is_open())
+		throw FileNotOpenException();
 	fd <<
-	"         v\n"
-    "        >X<\n"
-    "         A\n"
-    "        d$b\n"
-    "      .d\$$b.\n"
-    "    .d$i$$\$$b.\n"
-	"       d$$@b\n"
-	"      d\$$$ib\n"
-	"    .d$$$\$$$b\n"
-	"  .d$$@$$$$\$$ib.\n"
-	"      d$$i$$b\n"
-	"     d\$$$$@$b\n"
-	"  .d$@$$\$$$$$@b.\n"
-	".d$$$$i$$$\$$$$$$b.\n";
-	"        ###\n"
-	"        ###\n"
-	"        ###\n";
+		"     ccee88oo          \n"
+		"  C8O8O8Q8PoOb o8oo    \n"
+		" dOB69QO8PdUOpugoO9bD  \n"
+		"CgggbU8OU qOp qOdoUOdcb\n"
+		"   6OuU  /p u gcoUodpP \n"
+		"      \\\\//  /douUP   \n"
+		"        \\\\////       \n"
+		"         |||/\\        \n"
+		"         |||\\/        \n"
+		"         |||||         \n"
+		"  .....\\//||||\\....  \n";
 }
 
 

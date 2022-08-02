@@ -13,7 +13,7 @@ class PresidentialPardonForm
 	public:
 
 		PresidentialPardonForm();
-		PresidentialPardonForm(std::string &target);
+		PresidentialPardonForm(std::string target);
 		PresidentialPardonForm( PresidentialPardonForm const & src );
 		~PresidentialPardonForm();
 
@@ -22,9 +22,8 @@ class PresidentialPardonForm
 		virtual void execute(Bureaucrat const & executor) const;
 
 	private:
+		std::string target;
 
 };
-
-std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i );
 
 #endif /* ****************************************** PRESIDENTIALPARDONFORM_H */

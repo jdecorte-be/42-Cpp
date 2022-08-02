@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
@@ -7,21 +8,24 @@
 Bureaucrat::Bureaucrat()
 	: name("Default"), grade(150)
 {
+	// std::cout << "Default Constructor \n";
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade)
 	: name(name)
 {
-	if(grade < 1)
-		throw GradeTooHighException();
-	if(grade > 150)
+	if (grade > 150)
 		throw GradeTooLowException();
-	this->grade = grade;
+	else if (grade < 1)
+		throw GradeTooHighException();
+	else
+		this->grade = grade;
+	std::cout << "Bureaucrat with " << grade << " as beed constructed\n";
 }
 
 Bureaucrat::Bureaucrat( const Bureaucrat & src )
+	: name(src.name + "_cpy")
 {
-	name = src.name;
 	grade = src.grade;
 }
 
@@ -42,46 +46,63 @@ Bureaucrat::~Bureaucrat()
 Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 {
 	if ( this != &rhs )
-	{
-		name = rhs.name;
 		grade = rhs.grade;
-	}
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
+std::ostream & operator<<( std::ostream & o, Bureaucrat const & rhs)
 {
-	o << i.getName() << ", bureaucrat grade " << i.getGrade() << "." << std::endl;
+	o << "Bureaucrat " << rhs.getName() << " has a grade of " << rhs.getGrade();
 	return o;
 }
+
 
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
 
-const	char *Bureaucrat::GradeTooHighException::what() const throw()
+void Bureaucrat::increase_grade(int n)
 {
-	return "Grade too high exception";
-}
-
-const	char *Bureaucrat::GradeTooLowException::what() const throw()
-{
-	return "Grade too low exception";
-}
-
-void Bureaucrat::increase_grade()
-{
-	if(grade <= 1)
+	if(grade - n < 1)
 		throw GradeTooHighException();
-	grade--;
+	grade -= n;
+	std::cout << "Increase grade by " << n << std::endl;
 }
 
-void Bureaucrat::decrease_grade()
+void Bureaucrat::decrease_grade(int n)
 {
-	if(grade >= 150)
+	if(grade + n > 150)
 		throw GradeTooLowException();
-	grade++;
+	grade += n;
+	std::cout << "Decrease grade by " << n << std::endl;
 }
+
+void Bureaucrat::signForm(Form &ref)
+{
+	try
+	{
+		ref.beSigned(*this);
+		std::cout << "Bureaucrat " << name << " with a grade of " << grade << " have succesfully signs " << ref.getName() << std::endl;
+	}
+	catch (Form::Exception &e)
+	{
+		std::cout << "Bureaucrat " << name << " with a grade of " << grade << " can't signs " << ref.getName() << " because " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(Form const &form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << "Bureaucrat " << name << " with a grade of " << grade << " have succesfully executed " << form.getName() << std::endl;
+	}
+	catch (Form::Exception &e)
+	{
+		std::cout << "Bureaucrat " << name << " with a grade of " << grade << " can't executed " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
@@ -95,6 +116,11 @@ std::string Bureaucrat::getName() const
 int Bureaucrat::getGrade() const
 {
 	return grade;
+}
+
+void Bureaucrat::setGrade(int value)
+{
+	grade = value;
 }
 
 /* ************************************************************************** */

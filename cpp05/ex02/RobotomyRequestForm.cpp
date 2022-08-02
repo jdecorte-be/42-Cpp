@@ -5,17 +5,18 @@
 */
 
 RobotomyRequestForm::RobotomyRequestForm()
+	: Form("RobotomyRequestForm" ,72, 45), target("Default")
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string &target)
-	: Form("RobotomyRequestForm", target ,72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target)
+	: Form("RobotomyRequestForm" ,72, 45), target(target)
 {
 }
 
 RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm & src )
+	: target(src.target)
 {
-	*this = src;
 }
 
 
@@ -34,10 +35,8 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+		this->target = rhs.target;
 	return *this;
 }
 
@@ -48,6 +47,11 @@ RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm con
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
+	if(executor.getGrade() >  getGradeExec())
+		throw GradeTooLowException();
+	else if (getSigned() == false)
+		throw NotSignedException();// to add
+
 	std::cout << "Bruuuuhhh Bruuuuhhh" << std::endl;
 	if(rand () % 2)
 		std::cout << target << "has been robotized" << std::endl;

@@ -4,6 +4,10 @@
 # include <iostream>
 # include <string>
 
+#include "Form.hpp"
+
+class Form;
+
 class Bureaucrat
 {
 
@@ -16,29 +20,57 @@ class Bureaucrat
 
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 
+
 		std::string getName() const;
 		int getGrade() const;
-		void increase_grade();
-		void decrease_grade();
+		void setGrade(int value);
 
-		class GradeTooHighException 
+		void increase_grade(int n);
+		void decrease_grade(int n);
+		
+		// to add
+		void signForm(Form &ref);
+		void executeForm(Form const & form) const;
+
+		// Error handling
+		class Exception
 			: public std::exception
 		{
-			virtual const char *what() const throw();
+			public : 
+				virtual const char *what() const throw()
+				{
+					return "Bureaucrat Exception";
+				}
+		};
+
+		class GradeTooHighException
+			: public Bureaucrat::Exception
+		{
+			public : 
+				virtual const char *what() const throw()
+				{
+					return "Grade too high ( < 1 )";
+				}
 		};
 		
-		class GradeTooLowException 
-			: public std::exception
+		class GradeTooLowException
+			: public Bureaucrat::Exception
 		{
-			virtual const char *what() const throw();
+			public : 
+				virtual const char *what() const throw()
+				{
+					return "Grade too low ( > 150 )";
+				}
 		};
 
+
 	private:
-		std::string name;
+		const std::string name;
 		int	grade;
 
 };
 
-std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i );
+std::ostream & operator<<( std::ostream & o, Bureaucrat const & rhs);
+
 
 #endif /* ****************************************************** BUREAUCRAT_H */

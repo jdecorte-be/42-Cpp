@@ -22,7 +22,6 @@ class Form
 
 		void beSigned(Bureaucrat &bureaucrat);
 		void signForm();
-		virtual void execute(Bureaucrat const & executor) const = 0;
 
 		const std::string &getName() const;
 		int getGradeSign() const;
@@ -61,26 +60,6 @@ class Form
 				virtual const char *what() const throw()
 				{
 					return "Grade too low ( > 150 )";
-				}
-		};
-
-		class NotSignedException
-			: public Form::Exception
-		{
-			public : 
-				virtual const char *what() const throw()
-				{
-					return "The Form is not signed";
-				}
-		};
-
-		class FileNotOpenException
-			: public Form::Exception
-		{
-			public : 
-				virtual const char *what() const throw()
-				{
-					return "The File is not open";
 				}
 		};
 
