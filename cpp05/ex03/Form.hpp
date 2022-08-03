@@ -18,7 +18,7 @@ class Form
 
 		Form &		operator=( Form const & rhs );
 
-		virtual ~Form();
+		virtual ~Form() = 0;
 
 		void beSigned(Bureaucrat &bureaucrat);
 		void signForm();
@@ -29,9 +29,6 @@ class Form
 		int getGradeExec() const;
 		bool getSigned() const;
 		void setSigned(bool sign);
-
-
-
 
 		// Error handling
 		class Exception
