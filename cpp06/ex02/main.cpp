@@ -3,6 +3,7 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include "ERROR.hpp"
 
 Base * generate(void)
 {
@@ -36,7 +37,12 @@ void identify(Base *p)
 
 void identify(Base & p)
 {
-  identify(&p);
+    try
+    {
+        identify(&p);
+    }
+    catch (const std::exception & e)
+    {}
 }
 
 int main(void)
@@ -72,6 +78,15 @@ int main(void)
 	identify(rand2_ref);
 	identify(rand3_ref);
 	identify(rand4_ref);
+
+    // * error test (not show)
+    Base *error = new ERROR();
+    Base &error_ref = *error;
+
+	identify(error_ref);
+	identify(error);
+
+
 	std::cout << std::endl << std::endl;
 
 	std::cout << "DESTRUCTORS:" << std::endl;
