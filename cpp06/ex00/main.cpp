@@ -1,41 +1,115 @@
 #include <iostream>
 #include <string>
+#include "conv.hpp"
 
-int isInt(std::string &str)
+
+void convertion(std::string &str)
 {
-    if(str[0] == '+' || str[0] == '+')
-    for(int i = 0; i < str.size(); i++)
+    if(isInt(str) == true)
     {
-        if(isdigit(str[i]) == 0);
-            return 0;
+        double i = std::stod(str);
+
+        std::cout << "char: ";
+        if(i > 255 || i < 0)
+            std::cout << "Overflow of ascii table\n";
+        else if (i < 32 || i > 126)
+            std::cout << "Non displayable\n";
+        else
+            std::cout << static_cast<char>(i) << std::endl;
+
+        if (i > INT_MAX || i < INT_MIN)
+            std::cout << "int: Overflow (Max / Min Int)" << std::endl;
+        else
+            std::cout << "int: " << static_cast<int>(i) << std::endl;
+        std::cout << "float: " << static_cast<float>(i) << std::endl;
+        std::cout << "double: " << static_cast<double>(i) << std::endl;
     }
-    return 1;
-}
+    else if(isChar(str) == true)
+    {
+        std::cout << "char: ";
+        if(static_cast<int>(str[1]) < 32 || static_cast<int>(str[1]) > 126)
+            std::cout << "Non displayable\n";
+        else
+            std::cout << static_cast<char>(str[1]) << std::endl;
+        std::cout << "int: " << static_cast<int>(str[1]) << std::endl;
+        std::cout << "float: " << static_cast<float>(str[1]) << std::endl;
+        std::cout << "double: " << static_cast<double>(str[1]) << std::endl;
+    }
+    else if(isFloat(str) == true)
+    {
+        double i = std::stod(str);
 
-int isChar(){}
-int isString(){}
-int isFloat(){}
-int isDouble(){}
+        std::cout << "char: ";
+        if(i > 255 || i < 0)
+            std::cout << "Overflow of ascii table\n";
+        else if (i < 32 || i > 126)
+            std::cout << "Non displayable\n";
+        else
+            std::cout << static_cast<char>(i) << std::endl;
 
+        if (i > INT_MAX || i < INT_MIN)
+            std::cout << "int: Overflow (Max / Min Int)" << std::endl;
+        else
+            std::cout << "int: " << static_cast<int>(i) << std::endl;
+        std::cout << "float: " << str << std::endl;
+        std::cout << "double: " << static_cast<double>(i) << std::endl;
+    }
+    else if(isDouble(str) == true)
+    {
+        double i = std::stod(str);
 
-void convertion(std::string str)
-{
-    str.isDigit();
-    std::cout << "char: ";
-    if(str.length() == 1)
-        std::cout << static_cast<char>(str.at(0)) << std::endl;
-    else
-        std::cout << "impossible" << std::endl;
-    std::cout << "int: " << static_cast<int>() << std::endl;
-    std::cout << "float: " << str << std::endl;
-    std::cout << "double: " << str << std::endl;
+        std::cout << "char: ";
+        if(i > 255 || i < 0)
+            std::cout << "Overflow of ascii table\n";
+        else if (i < 32 || i > 126)
+            std::cout << "Non displayable\n";
+        else
+            std::cout << static_cast<char>(i) << std::endl;
 
+        if (i > INT_MAX || i < INT_MIN)
+            std::cout << "int: Overflow (Max / Min Int)" << std::endl;
+        else
+            std::cout << "int: " << static_cast<int>(i) << std::endl;
+        std::cout << "float: " << static_cast<float>(i) << std::endl;
+        std::cout << "double: " << str << std::endl;
+    }
+    else if(isOthers(str) == 1)
+    {
+        double i = std::stod(str);
+
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: " << str << std::endl;
+        std::cout << "double: " << static_cast<double>(i) << std::endl;
+    }
+    else if(isOthers(str) == 2)
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: " << str + "f" << std::endl;
+        std::cout << "double: " << str << std::endl;
+    }
+    else if(isOthers(str) == 0)
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: imposssible" << std::endl;
+        std::cout << "double: impossible" << std::endl;    
+    }
 }
 
 int main(int argc, char **av)
 {
-    if (argc < 2)
+    if (argc != 2)
+    {
+        std::cerr << "Usage: ./ex00 <thing to convert>" << std::endl;
         return 0;
+    }
     std::string str(av[1]);
+    if(str.empty())
+    {
+        std::cerr << "The thing you want convert don't exist!" << std::endl;
+        return 0;
+    }
     convertion(str);
 }
